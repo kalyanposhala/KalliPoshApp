@@ -5,7 +5,7 @@ using System.Web;
 
 namespace KalliPoshApp.Models
 {
-    public class MembershipType
+    public class MembershipTypes
     {
         public byte Id { get; set; }
         public short SignUpFee { get; set; }

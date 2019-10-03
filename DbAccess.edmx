@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
 warning 6002: The table/view 'KalliPoshDb.dbo.Customer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Customer">
@@ -19,6 +19,20 @@ warning 6002: The table/view 'KalliPoshDb.dbo.Customer' does not have a primary 
           <Property Name="IsSubscribedToNewsLetter" Type="bit" Nullable="false" />
           <Property Name="MembershipTypeId" Type="smallint" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'KalliPoshDb.dbo.MembershipType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MembershipType">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="SignUpFee" />
+            <PropertyRef Name="DurationInMonths" />
+            <PropertyRef Name="DiscountRate" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SignUpFee" Type="int" Nullable="false" />
+          <Property Name="DurationInMonths" Type="smallint" Nullable="false" />
+          <Property Name="DiscountRate" Type="smallint" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="DbModelStoreContainer">
           <EntitySet Name="Customer" EntityType="Self.Customer" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -28,9 +42,16 @@ warning 6002: The table/view 'KalliPoshDb.dbo.Customer' does not have a primary 
     [Customer].[MembershipTypeId] AS [MembershipTypeId]
     FROM [dbo].[Customer] AS [Customer]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="MembershipType" EntityType="Self.MembershipType" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MembershipType].[Id] AS [Id], 
+    [MembershipType].[SignUpFee] AS [SignUpFee], 
+    [MembershipType].[DurationInMonths] AS [DurationInMonths], 
+    [MembershipType].[DiscountRate] AS [DiscountRate]
+    FROM [dbo].[MembershipType] AS [MembershipType]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -48,7 +69,20 @@ warning 6002: The table/view 'KalliPoshDb.dbo.Customer' does not have a primary 
         </EntityType>
         <EntityContainer Name="KalliPoshDbEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="MembershipTypes" EntityType="DbModel.MembershipType" />
         </EntityContainer>
+        <EntityType Name="MembershipType">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="SignUpFee" />
+            <PropertyRef Name="DurationInMonths" />
+            <PropertyRef Name="DiscountRate" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SignUpFee" Type="Int32" Nullable="false" />
+          <Property Name="DurationInMonths" Type="Int16" Nullable="false" />
+          <Property Name="DiscountRate" Type="Int16" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -62,6 +96,16 @@ warning 6002: The table/view 'KalliPoshDb.dbo.Customer' does not have a primary 
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="IsSubscribedToNewsLetter" ColumnName="IsSubscribedToNewsLetter" />
                 <ScalarProperty Name="MembershipTypeId" ColumnName="MembershipTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MembershipTypes">
+            <EntityTypeMapping TypeName="DbModel.MembershipType">
+              <MappingFragment StoreEntitySet="MembershipType">
+                <ScalarProperty Name="DiscountRate" ColumnName="DiscountRate" />
+                <ScalarProperty Name="DurationInMonths" ColumnName="DurationInMonths" />
+                <ScalarProperty Name="SignUpFee" ColumnName="SignUpFee" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

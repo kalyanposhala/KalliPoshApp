@@ -26,5 +26,6 @@ namespace KalliPoshApp
         }
     
         public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<MembershipType> MembershipTypes { get; set; }
     }
 }
