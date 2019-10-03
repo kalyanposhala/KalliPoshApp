@@ -5,12 +5,12 @@ using System.Web;
 
 namespace KalliPoshApp.Models
 {
-    public class Customer
+    public class Customers
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public bool IsSubscribedToNewsLetter { get; set; }
-        public MembershipType MembershipType { get; set; }
+        //public MembershipType MembershipType { get; set; }
         public byte MembershipTypeId { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="KalliPoshDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
 warning 6002: The table/view 'KalliPoshDb.dbo.Customer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Customer">
@@ -19,21 +19,7 @@ warning 6002: The table/view 'KalliPoshDb.dbo.Customer' does not have a primary 
           <Property Name="IsSubscribedToNewsLetter" Type="bit" Nullable="false" />
           <Property Name="MembershipTypeId" Type="smallint" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'KalliPoshDb.dbo.MembershipType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="MembershipType">
-          <Key>
-            <PropertyRef Name="Id" />
-            <PropertyRef Name="SignUpFee" />
-            <PropertyRef Name="DurationInMonths" />
-            <PropertyRef Name="DiscountRate" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SignUpFee" Type="int" Nullable="false" />
-          <Property Name="DurationInMonths" Type="smallint" Nullable="false" />
-          <Property Name="DiscountRate" Type="smallint" Nullable="false" />
-        </EntityType>
-        <EntityContainer Name="KalliPoshDbModelStoreContainer">
+        <EntityContainer Name="DbModelStoreContainer">
           <EntitySet Name="Customer" EntityType="Self.Customer" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Customer].[Id] AS [Id], 
@@ -42,20 +28,12 @@ warning 6002: The table/view 'KalliPoshDb.dbo.MembershipType' does not have a pr
     [Customer].[MembershipTypeId] AS [MembershipTypeId]
     FROM [dbo].[Customer] AS [Customer]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="MembershipType" EntityType="Self.MembershipType" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [MembershipType].[Id] AS [Id], 
-    [MembershipType].[SignUpFee] AS [SignUpFee], 
-    [MembershipType].[DurationInMonths] AS [DurationInMonths], 
-    [MembershipType].[DiscountRate] AS [DiscountRate]
-    FROM [dbo].[MembershipType] AS [MembershipType]</DefiningQuery>
-          </EntitySet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="KalliPoshDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="DbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="Id" />
@@ -68,45 +46,22 @@ warning 6002: The table/view 'KalliPoshDb.dbo.MembershipType' does not have a pr
           <Property Name="IsSubscribedToNewsLetter" Type="Boolean" Nullable="false" />
           <Property Name="MembershipTypeId" Type="Int16" Nullable="false" />
         </EntityType>
-        <EntityType Name="MembershipType">
-          <Key>
-            <PropertyRef Name="Id" />
-            <PropertyRef Name="SignUpFee" />
-            <PropertyRef Name="DurationInMonths" />
-            <PropertyRef Name="DiscountRate" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SignUpFee" Type="Int32" Nullable="false" />
-          <Property Name="DurationInMonths" Type="Int16" Nullable="false" />
-          <Property Name="DiscountRate" Type="Int16" Nullable="false" />
-        </EntityType>
-        <EntityContainer Name="KalliPoshDbEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="KalliPoshDbEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Customers" EntityType="Self.Customer" />
-          <EntitySet Name="MembershipTypes" EntityType="Self.MembershipType" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="KalliPoshDbModelStoreContainer" CdmEntityContainer="KalliPoshDbEntities">
+        <EntityContainerMapping StorageEntityContainer="DbModelStoreContainer" CdmEntityContainer="KalliPoshDbEntities1">
           <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="KalliPoshDbModel.Customer">
+            <EntityTypeMapping TypeName="DbModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="IsSubscribedToNewsLetter" ColumnName="IsSubscribedToNewsLetter" />
                 <ScalarProperty Name="MembershipTypeId" ColumnName="MembershipTypeId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MembershipTypes">
-            <EntityTypeMapping TypeName="KalliPoshDbModel.MembershipType">
-              <MappingFragment StoreEntitySet="MembershipType">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="SignUpFee" ColumnName="SignUpFee" />
-                <ScalarProperty Name="DurationInMonths" ColumnName="DurationInMonths" />
-                <ScalarProperty Name="DiscountRate" ColumnName="DiscountRate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

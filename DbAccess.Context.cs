@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace KalliPoshApp.App_Data.DataAccess
+namespace KalliPoshApp
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class KalliPoshDbEntities : DbContext
+    public partial class KalliPoshDbEntities1 : DbContext
     {
-        public KalliPoshDbEntities()
-            : base("name=KalliPoshDbEntities")
+        public KalliPoshDbEntities1()
+            : base("name=KalliPoshDbEntities1")
         {
         }
     
@@ -26,6 +26,5 @@ namespace KalliPoshApp.App_Data.DataAccess
         }
     
         public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<MembershipType> MembershipTypes { get; set; }
     }
 }

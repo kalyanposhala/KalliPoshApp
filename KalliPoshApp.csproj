@@ -132,31 +132,28 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
-    <Compile Include="App_Data\DataAccess\Customer.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
+    <Compile Include="Customer.cs">
+      <DependentUpon>DbAccess.tt</DependentUpon>
     </Compile>
-    <Compile Include="App_Data\DataAccess\DataModel.Context.cs">
+    <Compile Include="DbAccess.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataModel.Context.tt</DependentUpon>
+      <DependentUpon>DbAccess.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="App_Data\DataAccess\DataModel.cs">
+    <Compile Include="DbAccess.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataModel.tt</DependentUpon>
+      <DependentUpon>DbAccess.tt</DependentUpon>
     </Compile>
-    <Compile Include="App_Data\DataAccess\DataModel.Designer.cs">
+    <Compile Include="DbAccess.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataModel.edmx</DependentUpon>
+      <DependentUpon>DbAccess.edmx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="App_Data\DataAccess\MembershipType.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Customers.cs" />
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -168,15 +165,15 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="App_Data\DataAccess\DataModel.Context.tt">
+    <Content Include="DbAccess.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataModel.edmx</DependentUpon>
-      <LastGenOutput>DataModel.Context.cs</LastGenOutput>
+      <DependentUpon>DbAccess.edmx</DependentUpon>
+      <LastGenOutput>DbAccess.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="App_Data\DataAccess\DataModel.tt">
+    <Content Include="DbAccess.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataModel.edmx</DependentUpon>
-      <LastGenOutput>DataModel.cs</LastGenOutput>
+      <DependentUpon>DbAccess.edmx</DependentUpon>
+      <LastGenOutput>DbAccess.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -184,12 +181,12 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="App_Data\DataAccess\DataModel.edmx">
+    <EntityDeploy Include="DbAccess.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DataModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>DbAccess.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="App_Data\DataAccess\DataModel.edmx.diagram">
-      <DependentUpon>DataModel.edmx</DependentUpon>
+    <Content Include="DbAccess.edmx.diagram">
+      <DependentUpon>DbAccess.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -220,7 +217,9 @@
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Customer\Detail.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\DataAccess\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

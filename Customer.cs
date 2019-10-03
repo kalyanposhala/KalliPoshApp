@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace KalliPoshApp.App_Data.DataAccess
+namespace KalliPoshApp
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class MembershipType
+    public partial class Customer
     {
         public int Id { get; set; }
-        public int SignUpFee { get; set; }
-        public short DurationInMonths { get; set; }
-        public short DiscountRate { get; set; }
+        public string Name { get; set; }
+        public bool IsSubscribedToNewsLetter { get; set; }
+        public short MembershipTypeId { get; set; }
     }
 }
