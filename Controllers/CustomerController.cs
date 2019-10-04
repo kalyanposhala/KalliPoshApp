@@ -12,33 +12,40 @@ namespace KalliPoshApp.Controllers
     {
         KalliPoshDbEntities1 _DbContext = new KalliPoshDbEntities1();
 
-        
+
         // GET: CustomerDetail
         public ActionResult Index()
         {
-            //var model = _DbContext.Customers.ToList();
-            List<KalliPoshApp.Models.Customers> uiCustomer = new List<Models.Customers>();
+            List<KalliPoshApp.Models.Customers> uiCustomer = new List<KalliPoshApp.Models.Customers>();
+            var viewmodel = new RandamMovieViewModel();
             var dbModel = _DbContext.Customers.ToList();
+
             foreach (var item in dbModel)
             {
+                var dbMembershipList = _DbContext.MembershipTypes.Where(x => x.Id == item.MembershipTypeId).FirstOrDefault();
+
                 uiCustomer.Add(new Models.Customers()
                 {
                     Id = item.Id,
-                    Name = item.Name
-
-
+                    Name = item.Name,
+                    IsSubscribedToNewsLetter = item.IsSubscribedToNewsLetter,
+                    MembershipName = dbMembershipList.MembershipName,
+                    MembershipTypeId = Convert.ToByte(item.MembershipTypeId)
                 });
             }
-            //var viewmodel = new RandamMovieViewModel();
-            //viewmodel.Customers = model;
+            //viewmodel.Customers = uiCustomer;
             return View(uiCustomer);
         }
         public ActionResult Detail(int Id)
         {
             KalliPoshApp.Models.Customers uiCustomer = new Models.Customers();
 
-            var model = _DbContext.Customers.Where(x =>x.Id ==Id).FirstOrDefault();
-            uiCustomer.Name = model.Name;
+            var model = _DbContext.Customers.Where(x => x.Id == Id).FirstOrDefault();
+            if (model != null)
+                uiCustomer.Name = model.Name;
+            else
+                uiCustomer = null; 
+          
             return View(uiCustomer);
         }
 

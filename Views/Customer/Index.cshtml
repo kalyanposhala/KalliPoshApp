@@ -1,5 +1,5 @@
 ﻿@model List<KalliPoshApp.Models.Customers>
-    @{ 
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -16,14 +16,18 @@ else
     <table class="table table-bordered table-hover">
         <tbody>
             <tr>
-                <th colspan="2">Custmors</th>
+                <th>Custmors</th>
+                <th>Membership Name</th>
             </tr>
 
             @foreach (var cust in Model)
             {
                 <tr>
                     <td>
-                        @Html.ActionLink(cust.Name, "Detail", new { Id = cust.Id})
+                        @Html.ActionLink(cust.Name, "Detail", new { Id = cust.Id })
+                    </td>
+                    <td>
+                        @cust.MembershipName
                     </td>
                 </tr>
 

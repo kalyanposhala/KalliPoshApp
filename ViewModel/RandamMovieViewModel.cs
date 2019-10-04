@@ -9,6 +9,6 @@ namespace KalliPoshApp.ViewModel
     public class RandamMovieViewModel
     {
         public List<Movie> Movie { get; set; }
-        public List<Customer> Customers { get; set; }
+        public List<Customers> Customers { get; set; }
     }
 }

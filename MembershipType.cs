@@ -18,5 +18,6 @@ namespace KalliPoshApp
         public int SignUpFee { get; set; }
         public short DurationInMonths { get; set; }
         public short DiscountRate { get; set; }
+        public string MembershipName { get; set; }
     }
 }
