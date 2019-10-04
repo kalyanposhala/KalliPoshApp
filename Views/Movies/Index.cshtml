@@ -1,4 +1,4 @@
-﻿@model KalliPoshApp.ViewModel.RandamMovieViewModel
+﻿@model  List<KalliPoshApp.Models.Movies>
 @{
     ViewBag.Title = "Random";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,16 +12,20 @@
 <table class="table table-bordered table-hover">
     <tbody>
         <tr>
-            <th colspan="2">Movies</th>
+            <th>Movies</th>
+            <th>Genre</th>
         </tr>
 
-        @foreach (var mov in Model.Movie)
+        @foreach (var mov in Model)
         {
-            <tr>
-                <td>
-                    @mov.Name
-                </td>
-            </tr>
+    <tr>
+        <td>
+            @Html.ActionLink(mov.Name,"Detail", new { Id=mov.Id})
+        </td>
+        <td>
+            @mov.Genre
+        </td>
+    </tr>
 
         }
 

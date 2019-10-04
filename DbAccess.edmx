@@ -21,6 +21,21 @@ warning 6002: The table/view 'KalliPoshDb.dbo.Customer' does not have a primary 
           <Property Name="DOB" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'KalliPoshDb.dbo.Genre' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Genre" />
+            <PropertyRef Name="ReleaseDate" />
+            <PropertyRef Name="DateAdded" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Genre" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ReleaseDate" Type="datetime" Nullable="false" />
+          <Property Name="DateAdded" Type="datetime" Nullable="false" />
+          <Property Name="NumberInStock" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'KalliPoshDb.dbo.MembershipType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="MembershipType">
           <Key>
@@ -35,6 +50,18 @@ warning 6002: The table/view 'KalliPoshDb.dbo.MembershipType' does not have a pr
           <Property Name="DiscountRate" Type="smallint" Nullable="false" />
           <Property Name="MembershipName" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'KalliPoshDb.dbo.Movie' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="GenreId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="GenreId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="DbModelStoreContainer">
           <EntitySet Name="Customer" EntityType="Self.Customer" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -45,6 +72,15 @@ warning 6002: The table/view 'KalliPoshDb.dbo.MembershipType' does not have a pr
     [Customer].[DOB] AS [DOB]
     FROM [dbo].[Customer] AS [Customer]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="Genre" EntityType="Self.Genre" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Genre].[Id] AS [Id], 
+    [Genre].[Genre] AS [Genre], 
+    [Genre].[ReleaseDate] AS [ReleaseDate], 
+    [Genre].[DateAdded] AS [DateAdded], 
+    [Genre].[NumberInStock] AS [NumberInStock]
+    FROM [dbo].[Genre] AS [Genre]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="MembershipType" EntityType="Self.MembershipType" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [MembershipType].[Id] AS [Id], 
@@ -53,6 +89,13 @@ warning 6002: The table/view 'KalliPoshDb.dbo.MembershipType' does not have a pr
     [MembershipType].[DiscountRate] AS [DiscountRate], 
     [MembershipType].[MembershipName] AS [MembershipName]
     FROM [dbo].[MembershipType] AS [MembershipType]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Movie" EntityType="Self.Movie" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Movie].[Id] AS [Id], 
+    [Movie].[Name] AS [Name], 
+    [Movie].[GenreId] AS [GenreId]
+    FROM [dbo].[Movie] AS [Movie]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -75,6 +118,8 @@ warning 6002: The table/view 'KalliPoshDb.dbo.MembershipType' does not have a pr
         <EntityContainer Name="KalliPoshDbEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="MembershipTypes" EntityType="DbModel.MembershipType" />
+          <EntitySet Name="Genres" EntityType="DbModel.Genre" />
+          <EntitySet Name="Movies" EntityType="DbModel.Movie" />
         </EntityContainer>
         <EntityType Name="MembershipType">
           <Key>
@@ -88,6 +133,29 @@ warning 6002: The table/view 'KalliPoshDb.dbo.MembershipType' does not have a pr
           <Property Name="DurationInMonths" Type="Int16" Nullable="false" />
           <Property Name="DiscountRate" Type="Int16" Nullable="false" />
           <Property Name="MembershipName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Genre1" />
+            <PropertyRef Name="ReleaseDate" />
+            <PropertyRef Name="DateAdded" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Genre1" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NumberInStock" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="GenreId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="GenreId" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -113,6 +181,26 @@ warning 6002: The table/view 'KalliPoshDb.dbo.MembershipType' does not have a pr
                 <ScalarProperty Name="DiscountRate" ColumnName="DiscountRate" />
                 <ScalarProperty Name="DurationInMonths" ColumnName="DurationInMonths" />
                 <ScalarProperty Name="SignUpFee" ColumnName="SignUpFee" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genres">
+            <EntityTypeMapping TypeName="DbModel.Genre">
+              <MappingFragment StoreEntitySet="Genre">
+                <ScalarProperty Name="NumberInStock" ColumnName="NumberInStock" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+                <ScalarProperty Name="Genre1" ColumnName="Genre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movies">
+            <EntityTypeMapping TypeName="DbModel.Movie">
+              <MappingFragment StoreEntitySet="Movie">
+                <ScalarProperty Name="GenreId" ColumnName="GenreId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

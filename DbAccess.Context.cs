@@ -27,5 +27,7 @@ namespace KalliPoshApp
     
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<MembershipType> MembershipTypes { get; set; }
+        public virtual DbSet<Genre> Genres { get; set; }
+        public virtual DbSet<Movie> Movies { get; set; }
     }
 }

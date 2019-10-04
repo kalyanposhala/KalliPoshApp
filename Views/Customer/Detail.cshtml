@@ -17,9 +17,9 @@ else
         </li>
         @if (Model.DOB != null)
         {
-            <li>
-                Data Of Birth: @Model.DOB.Value.Date;
-            </li>
+    <li>
+        Data Of Birth: @Convert.ToDateTime(Model.DOB).ToString("MM/dd/yyyy")
+    </li>
         }
     </ul>
 }
