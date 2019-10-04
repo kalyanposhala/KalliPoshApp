@@ -11,5 +11,16 @@
 else
 {
     <h2>@Model.Name</h2>
+    <ul>
+        <li>
+            Membership Type: @Model.MembershipName
+        </li>
+        @if (Model.DOB != null)
+        {
+            <li>
+                Data Of Birth: @Model.DOB.Value.Date;
+            </li>
+        }
+    </ul>
 }
 

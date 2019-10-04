@@ -12,6 +12,8 @@ namespace KalliPoshApp.Models
         public bool IsSubscribedToNewsLetter { get; set; }
         public byte MembershipTypeId { get; set; }
         public string MembershipName { get; set; }
+        public Nullable<DateTime>  DOB { get; set; }
+
 
     }
 }

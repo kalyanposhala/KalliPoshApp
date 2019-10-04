@@ -41,11 +41,17 @@ namespace KalliPoshApp.Controllers
             KalliPoshApp.Models.Customers uiCustomer = new Models.Customers();
 
             var model = _DbContext.Customers.Where(x => x.Id == Id).FirstOrDefault();
+            var dbMembershipList = _DbContext.MembershipTypes.Where(x => x.Id == model.MembershipTypeId).FirstOrDefault();
+
             if (model != null)
+            {
                 uiCustomer.Name = model.Name;
+                uiCustomer.MembershipName = dbMembershipList.MembershipName;
+                uiCustomer.DOB = model.DOB;
+            }               
             else
-                uiCustomer = null; 
-          
+                uiCustomer = null;
+
             return View(uiCustomer);
         }
 

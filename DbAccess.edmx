@@ -18,6 +18,7 @@ warning 6002: The table/view 'KalliPoshDb.dbo.Customer' does not have a primary 
           <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="IsSubscribedToNewsLetter" Type="bit" Nullable="false" />
           <Property Name="MembershipTypeId" Type="smallint" Nullable="false" />
+          <Property Name="DOB" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'KalliPoshDb.dbo.MembershipType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -40,7 +41,8 @@ warning 6002: The table/view 'KalliPoshDb.dbo.MembershipType' does not have a pr
     [Customer].[Id] AS [Id], 
     [Customer].[Name] AS [Name], 
     [Customer].[IsSubscribedToNewsLetter] AS [IsSubscribedToNewsLetter], 
-    [Customer].[MembershipTypeId] AS [MembershipTypeId]
+    [Customer].[MembershipTypeId] AS [MembershipTypeId], 
+    [Customer].[DOB] AS [DOB]
     FROM [dbo].[Customer] AS [Customer]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="MembershipType" EntityType="Self.MembershipType" store:Type="Tables" store:Schema="dbo">
@@ -68,6 +70,7 @@ warning 6002: The table/view 'KalliPoshDb.dbo.MembershipType' does not have a pr
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IsSubscribedToNewsLetter" Type="Boolean" Nullable="false" />
           <Property Name="MembershipTypeId" Type="Int16" Nullable="false" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityContainer Name="KalliPoshDbEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Customers" EntityType="Self.Customer" />
@@ -95,6 +98,7 @@ warning 6002: The table/view 'KalliPoshDb.dbo.MembershipType' does not have a pr
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="DbModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="IsSubscribedToNewsLetter" ColumnName="IsSubscribedToNewsLetter" />

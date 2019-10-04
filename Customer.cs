@@ -18,5 +18,6 @@ namespace KalliPoshApp
         public string Name { get; set; }
         public bool IsSubscribedToNewsLetter { get; set; }
         public short MembershipTypeId { get; set; }
+        public Nullable<System.DateTime> DOB { get; set; }
     }
 }
